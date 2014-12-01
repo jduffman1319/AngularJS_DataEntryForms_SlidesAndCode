@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html ng-app="">
+<head>
+    <title>Two Way Data Binding Demo</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.css" rel="stylesheet" />
+    <script src="scripts/angular.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="input-group">
+            <label>Name</label>
+            <input class="form-control" ng-model="myname" />
+        </div>
+        <div>{{myname | uppercase}}</div>
+        <div class="{{myname}}">
+            <span>{{myname}}</span>
+        </div>
+    </div>
+</body>
+</html>

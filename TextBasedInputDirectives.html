@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html ng-app>
+<head>
+    <title>Data Entry Form</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.css" rel="stylesheet" />
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-route.js"></script>
+    <meta charset="utf-8">
+</head>
+<body>
+    <form name="MyForm">
+        <div class="container well">
+            <h1>Employee Infomation</h1>
+            <div class="input-group">
+                <label>First name</label>
+                <input type="text" class="form-control" ng-model="employee.firstName">
+            </div>
+            <div class="input-group">
+                <label>Last name</label>
+                <input type="text" class="form-control" ng-model="employee.lastName">
+            </div>
+            <div class="input-group">
+                <label>E-mail</label>
+                <input type="email" class="form-control" ng-model="employee.email">
+            </div>
+            <div class="input-group">
+                <label>Blog</label>
+                <input type="url" class="form-control" ng-model="employee.website">
+            </div>
+            <div class="input-group">
+                <label>Comments</label>
+                <textarea class="form-control" rows="5" ng-model="employee.comments"></textarea>
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" class="form-control" ng-model="employee.password">
+            </div>
+
+            <div class="input-group">
+                <label><input type="radio" class="form-control" ng-model="employee.gender" value="M">&nbsp;Male&nbsp;</label>
+                <label><input type="radio" class="form-control" ng-model="employee.gender" value="F">&nbsp;Female&nbsp;</label>
+            </div>
+
+            <div class="input-group">
+                <label>Active</label>
+                <input type="checkbox" class="form-control" ng-model="employee.active">
+            </div>
+            <div class="input-group">
+                <label>Status</label>
+                <input type="checkbox" class="form-control" ng-model="employee.status" ng-true-value="'Cool'" ng-false-value="'Not Cool'">
+            </div>
+
+            <div class="input-group">
+                <label>Department</label>
+                <select ng-model="employee.department" class="form-control">
+                    <option value="sales">Sales</option>
+                    <option value="admin">Admin</option>
+                    <option value="accounting">Accounting</option>
+                    <option value="human resources">Human Resources</option>
+                    <option value="maintenance">Maintenance</option>
+                    <option value="">No Selection</option>
+                </select>
+            </div>
+        </div>
+        <div class="container well">
+            <h2>Model Values</h2>
+            <div class="input-group">
+                <pre ng-bind="employee | json"></pre>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

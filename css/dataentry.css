@@ -1,0 +1,4 @@
+﻿form .ng-pristine { background-color: #fffeb9; }
+form .ng-valid.ng-dirty { background-color: lightgreen; }
+form .ng-invalid.ng-dirty { background-color: #ff0000; }
+.errormessage {color:red;}

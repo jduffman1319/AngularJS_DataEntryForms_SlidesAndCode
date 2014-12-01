@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html ng-app="myCoolApp">
+<head>
+    <title>Date Entry Form Demo</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="css/dataentry.css" rel="stylesheet" />
+    <script src="scripts/angular.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/dataentryCtrl.js"></script>
+</head>
+<body ng-controller="DataEntryCtrl as vm">
+    <div id="main" class="container well well-lg">
+        <div>
+            <form name="vm.myForm" id="myForm" novalidate>
+                <fieldset>
+                    <div class="form-group">
+                        <label for="firstname">First Name:</label>
+                        <input type="text"
+                               name="firstname"
+                               placeholder="Enter first name"
+                               autofocus
+                               required
+                               ng-model="vm.employee.firstname"
+                               ng-model-options="{debounce:1000}"
+                               ng-minlength="2"
+                               ng-maxlength="20"
+                               ng-pattern="/^[a-z]+$/"
+                               class="form-control" />
+                        <div class="error-container" ng-show="myForm.firstname.$dirty && myForm.firstname.$invalid">
+                            <small class="errormessage" ng-show="myForm.firstname.$error.required">First name is required.<br /></small>
+                            <small class="errormessage" ng-show="myForm.firstname.$error.minlength">The first name is required to be at least 2 characters.<br /></small>
+                            <small class="errormessage" ng-show="myForm.firstname.$error.maxlength">The first name cannot be longer than 20 characters.<br /></small>
+                            <small class="errormessage" ng-show="myForm.firstname.$error.pattern">Lowercase letters only please for the first name.<br /></small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastname">Last Name:</label>
+                        <input type="text"
+                               name="lastname"
+                               placeholder="Enter last name"
+                               required
+                               ng-model="vm.employee.lastname"
+                               ng-minlength="3"
+                               ng-maxlength="20"
+                               ng-pattern="/^[A-Z]+$/"
+                               class="form-control" />
+                        <div class="error-container" ng-show="myForm.lastname.$dirty && myForm.lastname.$invalid">
+                            <small class="errormessage" ng-show="myForm.lastname.$error.required">Last name is required.<br /></small>
+                            <small class="errormessage" ng-show="myForm.lastname.$error.minlength">The last name is required to be at least 3 characters.<br /></small>
+                            <small class="errormessage" ng-show="myForm.lastname.$error.maxlength">The last name cannot be longer than 20 characters.<br /></small>
+                            <small class="errormessage" ng-show="myForm.lastname.$error.pattern">Uppercase letters only please for the last name.<br /></small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email"
+                               name="email"
+                               ng-required="vm.emailrequired"
+                               placeholder="Enter email address"
+                               ng-model="vm.employee.email"
+                               class="form-control" />
+                        <div class="error-container" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                            <small class="errormessage" ng-show="myForm.email.$error.required">Email is required.<br /></small>
+                        </div>
+                        <div class="input-group">
+                            <label>Email Required?</label>
+                            <input type="checkbox" name="chkemailrequired" class="form-control" ng-model="vm.emailrequired">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button ng-click="vm.saveData()" id="save" name="save" ng-disabled="myForm.$invalid" class="btn btn-primary">
+                            Save
+                        </button>
+                        <button ng-click="vm.cancelData()" id="cancel" name="cancel" class="btn btn-danger">Cancel</button>
+                        <button id="clear" name="clear" class="btn btn-info" ng-click="vm.clearData()" ng-disabled="vm.preventRevert()">Clear</button>
+
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <h2>Model Values</h2>
+        <div class="input-group">
+            <pre ng-bind="vm | json"></pre>
+        </div>
+
+        <h2>State Settings</h2>
+        <strong>myForm.$pristine =</strong> {{vm.myForm.$pristine}}<br />
+        <strong>myForm.$dirty =</strong> {{vm.myForm.$dirty}}<br />
+        <strong>myForm.$valid =</strong> {{vm.myForm.$valid}}<br />
+        <strong>myForm.$invalid =</strong> {{vm.myForm.$invalid}}<br />
+        <hr />
+        <strong>myForm.firstname.$touched =</strong> {{vm.myForm.firstname.$touched}}<br />
+        <strong>myForm.firstname.$untouched =</strong> {{vm.myForm.firstname.$untouched}}<br />
+        <strong>myForm.firstname.$pristine =</strong> {{vm.myForm.firstname.$pristine}}<br />
+        <strong>myForm.firstname.$dirty =</strong> {{vm.myForm.firstname.$dirty}}<br />
+        <strong>myForm.firstname.$valid =</strong> {{vm.myForm.firstname.$valid}}<br />
+        <strong>myForm.firstname.$invalid =</strong> {{vm.myForm.firstname.$invalid}}<br />
+        <hr />
+        <strong>myForm.lastname.$touched =</strong> {{vm.myForm.lastname.$touched}}<br />
+        <strong>myForm.lastname.$untouched =</strong> {{vm.myForm.lastname.$untouched}}<br />
+        <strong>myForm.lastname.$pristine =</strong> {{vm.myForm.lastname.$pristine}}<br />
+        <strong>myForm.lastname.$dirty =</strong> {{vm.myForm.lastname.$dirty}}<br />
+        <strong>myForm.lastname.$valid =</strong> {{vm.myForm.lastname.$valid}}<br />
+        <strong>myForm.lastname.$invalid =</strong> {{vm.myForm.lastname.$invalid}}<br />
+    </div>
+</body>
+</html>
